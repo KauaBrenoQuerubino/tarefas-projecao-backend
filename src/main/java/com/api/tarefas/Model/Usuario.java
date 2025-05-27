@@ -2,18 +2,40 @@ package com.api.tarefas.Model;
 
 import jakarta.persistence.*;
 
-@Entity
-@Table(name = "Usuarios")
 public class Usuario {
 
-
-    @Id
-    @Column(name="matricula")
     private int matricula;
 
-    @Column(name = "nome")
     private String nome;
 
+    private String senha;
+
+    private Curso curso;
+
+    public Usuario() {
+    }
+
+    public Usuario(int matricula, String nome, String senha) {
+        this.matricula = matricula;
+        this.nome = nome;
+        this.senha = senha;
+    }
+
+    public Curso getCurso() {
+        return curso;
+    }
+
+    public void setCurso(Curso curso) {
+        this.curso = curso;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
 
     public int getMatricula() {
         return matricula;
@@ -30,4 +52,5 @@ public class Usuario {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
 }

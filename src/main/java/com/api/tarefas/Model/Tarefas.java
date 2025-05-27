@@ -4,31 +4,43 @@ import jakarta.persistence.*;
 
 import java.util.Date;
 
-@Entity
-@Table(name = "Tarefas")
 public class Tarefas {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private int id;
+    private String id;
 
-    @Column(name = "titulo")
     private String titulo;
 
-    @Column(name = "descricao")
     private String descricao;
 
-    @Column(name = "limite")
-    private Date limite;
+    private String limite;
 
-    @Column(name = "status")
     private String status;
 
-    @ManyToOne
-    @JoinColumn(name = "matricula_usuario", referencedColumnName = "matricula")
     private Usuario usuario;
 
+    private Disciplina disciplina;
+
+
+    public Tarefas() {
+
+    }
+
+    public Tarefas(String id, String titulo, String descricao, String limite, String status, Usuario usuario, Disciplina disciplina) {
+        this.id = id;
+        this.titulo = titulo;
+        this.descricao = descricao;
+        this.limite = limite;
+        this.status = status;
+        this.disciplina = disciplina;
+    }
+
+    public Disciplina getDisciplina() {
+        return disciplina;
+    }
+
+    public void setDisciplina(Disciplina disciplina) {
+        this.disciplina = disciplina;
+    }
 
     public Usuario getUsuario() {
         return usuario;
@@ -38,11 +50,11 @@ public class Tarefas {
         this.usuario = usuario;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -62,11 +74,11 @@ public class Tarefas {
         this.descricao = descricao;
     }
 
-    public Date getLimite() {
+    public String getLimite() {
         return limite;
     }
 
-    public void setLimite(Date limite) {
+    public void setLimite(String limite) {
         this.limite = limite;
     }
 

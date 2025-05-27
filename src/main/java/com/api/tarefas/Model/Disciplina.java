@@ -3,22 +3,38 @@ package com.api.tarefas.Model;
 
 import jakarta.persistence.*;
 
-@Entity
-@Table(name = "Disciplinas")
-public class Disciplina {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private int id;
 
-    @Column(name = "nome")
+public class Disciplina {
+
+    private String id;
+
     private String nome;
 
-    public int getId() {
+    private Curso curso;
+
+    public Disciplina() {
+
+    }
+
+    public Disciplina(String id, String nome, Curso curso) {
+        this.id = id;
+        this.nome = nome;
+        this.curso = curso;
+    }
+
+    public Curso getCurso() {
+        return curso;
+    }
+
+    public void setCurso(Curso curso) {
+        this.curso = curso;
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
