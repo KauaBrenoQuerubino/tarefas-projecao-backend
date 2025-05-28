@@ -1,6 +1,6 @@
 package com.api.tarefas.Model;
 
-import jakarta.persistence.*;
+
 
 public class Usuario {
 

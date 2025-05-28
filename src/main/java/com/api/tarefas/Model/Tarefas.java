@@ -1,6 +1,6 @@
 package com.api.tarefas.Model;
 
-import jakarta.persistence.*;
+
 
 import java.util.Date;
 
