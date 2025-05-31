@@ -9,6 +9,23 @@ public class Curso {
 
     private String duracao;
 
+    private Usuario usuario;
+
+    public Curso(String id, String nome, String duracao, Usuario usuario) {
+        this.id = id;
+        this.nome = nome;
+        this.duracao = duracao;
+        this.usuario = usuario;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
     public Curso(){
 
     }

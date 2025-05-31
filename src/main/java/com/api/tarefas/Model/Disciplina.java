@@ -1,9 +1,5 @@
 package com.api.tarefas.Model;
 
-
-
-
-
 public class Disciplina {
 
     private String id;

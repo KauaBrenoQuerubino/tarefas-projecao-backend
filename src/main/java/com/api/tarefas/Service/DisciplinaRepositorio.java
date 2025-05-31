@@ -5,6 +5,7 @@ import com.api.tarefas.Model.Disciplina;
 import com.api.tarefas.Model.Tarefas;
 import com.google.api.core.ApiFuture;
 import com.google.firebase.database.*;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -38,32 +39,35 @@ public class DisciplinaRepositorio{
     }
 
     //Read
-    public CompletableFuture<List<Disciplina>> findAll() {
-        CompletableFuture<List<Disciplina>> disciplinasFuture = new CompletableFuture<>();
+    @Async
+    public CompletableFuture<List<Disciplina>> findByMatricula(int matricula) {
+        CompletableFuture<List<Disciplina>> future = new CompletableFuture<>();
 
         DatabaseReference dbFirebase = FirebaseDatabase.getInstance().getReference(COL_NAME);
-
         dbFirebase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 List<Disciplina> lista = new ArrayList<>();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     Disciplina disciplina = dataSnapshot.getValue(Disciplina.class);
-                    if (disciplina != null) {
+                    if (disciplina != null && disciplina.getCurso() != null &&
+                            disciplina.getCurso().getUsuario() != null &&
+                            disciplina.getCurso().getUsuario().getMatricula() == matricula) {
                         lista.add(disciplina);
                     }
                 }
-                disciplinasFuture.complete(lista);
+                future.complete(lista);
             }
 
             @Override
             public void onCancelled(DatabaseError error) {
-                disciplinasFuture.completeExceptionally(error.toException());
+                future.completeExceptionally(error.toException());
             }
         });
 
-        return disciplinasFuture;
+        return future;
     }
+
 
 
 
